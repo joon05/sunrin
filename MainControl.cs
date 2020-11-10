@@ -30,8 +30,7 @@ public class MainControl : MonoBehaviour//중앙제어 코드
     {
         Instance = this;
         //여기부터 각 유닛의 정보 가져오는 코드
-        RTA rta_x = GameObject.Find("RTA").GetComponent<RTA>();
-        RTA rta_y = GameObject.Find("RTA").GetComponent<RTA>();
+        
         RTA rta_life = GameObject.Find("RTA").GetComponent<RTA>();
         RTA rta_atc = GameObject.Find("RTA").GetComponent<RTA>();
         //여기까지 각 유닛의 정보를 가져오는 코드

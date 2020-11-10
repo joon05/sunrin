@@ -7,15 +7,16 @@ public class MoveButton : MonoBehaviour
     private GameObject su;
     public GameObject st;//선택 타일 
     public GameObject bb;
+    
     void Update()
     {
         su = GameObject.Find(MainControl.Instance.su);//su에 선택된 게임 오브젝트 가져옴
 
-
+        
     }
     private void OnMouseDown()
     {
-        Instantiate(bb, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+        Instantiate(bb, new Vector3((float)(su.transform.position.x), (float)(su.transform.position.y + 0.3), -3), Quaternion.identity);
         MainControl.Instance.act = "move";
         if (MainControl.Instance.su == "RTL")//기마병일경우 3칸 이동 타일 생성
         {
@@ -117,7 +118,8 @@ public class MoveButton : MonoBehaviour
             Instantiate(st, new Vector2((float)(su.transform.position.x ), (float)(su.transform.position.y + 1.5)), Quaternion.identity);
 
         }
-
-        Destroy(this);
+        Destroy(GameObject.Find("ａｔｔａｃｋ　ｂｕｔｔｏｎ(Clone)"));
+        Destroy(GameObject.Find("ｍｏｖｅ　ｂｕｔｔｏｎ(Clone)"));
+        Destroy(GameObject.Find("ｂａｃｋ　ｂｕｔｔｏｎ(Clone)"));
     }
 }

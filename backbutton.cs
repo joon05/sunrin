@@ -13,8 +13,8 @@ public class backbutton : MonoBehaviour//뒤로가기 버튼 코드
 
     void Update()
     {
-        attackbutton = GameObject.Find("attack button");//게임오브제에 프리팹 등록
-        movebutton = GameObject.Find("move button");//게임오브제에 프리팹 등록
+        attackbutton = GameObject.Find("ａｔｔａｃｋ　ｂｕｔｔｏｎ(Clone)");//게임오브제에 프리팹 등록
+        movebutton = GameObject.Find("ｍｏｖｅ　ｂｕｔｔｏｎ(Clone)");//게임오브제에 프리팹 등록
     }
     private void OnMouseDown()
     {
@@ -22,6 +22,6 @@ public class backbutton : MonoBehaviour//뒤로가기 버튼 코드
         Destroy(movebutton);//movebutton프리팹 파괴
         MainControl.Instance.destroy = true;
         MainControl.Instance.anyc = false;
-        Destroy(this);//이 프리팹 파괴
+        Destroy(GameObject.Find("ｂａｃｋ　ｂｕｔｔｏｎ(Clone)"));//이 프리팹 파괴
     }
 }

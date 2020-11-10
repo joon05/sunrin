@@ -17,7 +17,7 @@ public class attackbutton : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        Instantiate(bb, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+        Instantiate(bb, new Vector3((float)(su.transform.position.x), (float)(su.transform.position.y + 0.3), -3), Quaternion.identity);
         MainControl.Instance.act = "attack";
         if (MainControl.Instance.su=="RTM")//마법사일경우 2칸 떨어진 곳에 선택 타일 생성
         {
@@ -48,6 +48,8 @@ public class attackbutton : MonoBehaviour
             Instantiate(st, new Vector2((float)(su.transform.position.x + -1.5), (float)(su.transform.position.y)), Quaternion.identity);
             Instantiate(st, new Vector2((float)(su.transform.position.x ), (float)(su.transform.position.y+1.5)), Quaternion.identity);
         }
-        Destroy(this);
+        Destroy(GameObject.Find("ａｔｔａｃｋ　ｂｕｔｔｏｎ(Clone)"));
+        Destroy(GameObject.Find("ｍｏｖｅ　ｂｕｔｔｏｎ(Clone)"));
+        Destroy(GameObject.Find("ｂａｃｋ　ｂｕｔｔｏｎ(Clone)"));
     }
 }
