@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class MoveButton : MonoBehaviour
 {
+    public AudioSource audioSource;
     private GameObject su;
     public GameObject st;//선택 타일 
     public GameObject bb;
-    
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();//사운드
+    }
     void Update()
     {
         su = GameObject.Find(MainControl.Instance.su);//su에 선택된 게임 오브젝트 가져옴
@@ -16,6 +20,8 @@ public class MoveButton : MonoBehaviour
     }
     private void OnMouseDown()
     {
+
+        audioSource.Play();
         Instantiate(bb, new Vector3((float)(su.transform.position.x), (float)(su.transform.position.y + 0.3), -3), Quaternion.identity);
         MainControl.Instance.act = "move";
         if (MainControl.Instance.su == "RTL")//기마병일경우 3칸 이동 타일 생성

@@ -60,5 +60,17 @@ public class SelectTile : MonoBehaviour//선택 타일 코드
             MainControl.Instance.destroy = true;
         }
     }
-    
+    private void OnTriggerEnter2D(Collider2D other)//다른것에 닿았을때
+    {
+        if (MainControl.Instance.act== "move")//현재 행동이 move라면
+        {
+            if (other.gameObject.tag == "unit") //닿은게 유닛이라면
+            {
+                Destroy(this.gameObject);
+            }
+          
+            
+        }//요약:유닛에 닿으면 삭제
+    }
+
 }

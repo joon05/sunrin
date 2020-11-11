@@ -1,32 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
-public class RTA : MonoBehaviour //레드팀 어쎄신 코드
+public class RTW : MonoBehaviour
 {
-    //능력치 세팅
     public AudioSource audioSource;
-    public static int rta_life=3;
-    public static int rta_atc = 1;
+    public static int rtw_life = 5;
+    public static int rtw_atc = 0;
     public GameObject bb;//백버튼
     public GameObject ab;//어택 버튼
     public GameObject mb;//무브 버튼
     void Start()
     {
+       
         audioSource = GetComponent<AudioSource>();//사운드
-        this.transform.position = new Vector3(-3, 0, -1);//매 시작 위치
+        this.transform.position = new Vector3(-3, (float)1.5, -1);//매 시작 위치
+
+
     }
 
-   
+
     void Update()
     {
-        if (rta_life <= 0)
+        rtw_atc = 7 - rtw_life;
+        if (rtw_life <= 0)
         {
             Destroy(this.gameObject);
             MainControl.Instance.leftr = MainControl.Instance.leftr - 1;//죽을때 메인 컨트롤에 남은 레드팀 유닛수 줄임
         }
-
     }
     private void OnMouseDown()//클릭되었을때
     {
@@ -37,10 +38,10 @@ public class RTA : MonoBehaviour //레드팀 어쎄신 코드
             {
                 audioSource.Play();
                 MainControl.Instance.anyc = true;//어떤 유닛이든지 선택됬는가? TRUE 
-                MainControl.Instance.su = "RTA";//선택된 유닛 RTA
-                Instantiate(bb,new Vector3((float)(this.transform.position.x), (float)(this.transform.position.y+0.3),-3), Quaternion.identity);
-                Instantiate(ab, new Vector3((float)(this.transform.position.x), (float)(this.transform.position.y + 1.2),-3), Quaternion.identity);
-                Instantiate(mb, new Vector3((float)(this.transform.position.x), (float)(this.transform.position.y + 1.8),-3), Quaternion.identity);
+                MainControl.Instance.su = "RTW";//선택된 유닛 BTA
+                Instantiate(bb, new Vector3((float)(this.transform.position.x), (float)(this.transform.position.y + 0.3), -3), Quaternion.identity);
+                Instantiate(ab, new Vector3((float)(this.transform.position.x), (float)(this.transform.position.y + 1.2), -3), Quaternion.identity);
+                Instantiate(mb, new Vector3((float)(this.transform.position.x), (float)(this.transform.position.y + 1.8), -3), Quaternion.identity);
             }
         }
     }
@@ -56,11 +57,11 @@ public class RTA : MonoBehaviour //레드팀 어쎄신 코드
                 {
                     Destroy(this.gameObject);
                 }
-                rta_life = rta_life - 1;
+                rtw_life = rtw_life - 1;
             }
             else if (MainControl.Instance.su == "BTW")
             {
-                rta_life = rta_life - BTW.btw_atc;
+                rtw_life = rtw_life - BTW.btw_atc;
             }
         }
     }

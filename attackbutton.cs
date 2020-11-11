@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class attackbutton : MonoBehaviour
 {
+    public AudioSource audioSource;
     private GameObject su;
     public GameObject st;//선택 타일 
     public GameObject bb;
-   
-  
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();//사운드
+    }
     void Update()
     {
         su = GameObject.Find(MainControl.Instance.su);//su에 선택된 게임 오브젝트 가져옴
@@ -17,6 +21,8 @@ public class attackbutton : MonoBehaviour
     }
     private void OnMouseDown()
     {
+
+        audioSource.Play();
         Instantiate(bb, new Vector3((float)(su.transform.position.x), (float)(su.transform.position.y + 0.3), -3), Quaternion.identity);
         MainControl.Instance.act = "attack";
         if (MainControl.Instance.su=="RTM")//마법사일경우 2칸 떨어진 곳에 선택 타일 생성
