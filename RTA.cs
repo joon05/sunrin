@@ -23,8 +23,9 @@ public class RTA : MonoBehaviour //레드팀 어쎄신 코드
     {
         if (rta_life <= 0)
         {
-            Destroy(this.gameObject);
             MainControl.Instance.leftr = MainControl.Instance.leftr - 1;//죽을때 메인 컨트롤에 남은 레드팀 유닛수 줄임
+            Destroy(this.gameObject);
+         
         }
 
     }
@@ -54,13 +55,26 @@ public class RTA : MonoBehaviour //레드팀 어쎄신 코드
                 int d = UnityEngine.Random.Range(1, 5);
                 if (d == 4)
                 {
+                    MainControl.Instance.leftr = MainControl.Instance.leftr - 1;
                     Destroy(this.gameObject);
                 }
                 rta_life = rta_life - 1;
             }
-            else if (MainControl.Instance.su == "BTW")
+            else if (MainControl.Instance.su == "BTW")//광전사한테 공격받을시
             {
                 rta_life = rta_life - BTW.btw_atc;
+            }
+            else if (MainControl.Instance.su == "BTK")//기사한테 공격받을시 
+            {
+                rta_life = rta_life - 3;
+            }
+            else if (MainControl.Instance.su == "BTM")//마법사에게 공격받을시
+            {
+                rta_life = rta_life - 3;
+            }
+            else if (MainControl.Instance.su == "BTL")//기마병에게 공격받을시 
+            {
+                rta_life = rta_life - 2;
             }
         }
     }

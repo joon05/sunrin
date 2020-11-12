@@ -24,8 +24,9 @@ public class BTW : MonoBehaviour
         btw_atc = 7 - btw_life;
         if (btw_life <= 0)
         {
-            Destroy(this.gameObject);
             MainControl.Instance.leftb = MainControl.Instance.leftb - 1;//죽을때 메인 컨트롤에 남은 블루팀 유닛수 줄임
+            Destroy(this.gameObject);
+          
         }
     }
     private void OnMouseDown()//클릭되었을때
@@ -54,13 +55,26 @@ public class BTW : MonoBehaviour
                 int d = UnityEngine.Random.Range(1, 5);
                 if (d == 4)
                 {
+                    MainControl.Instance.leftb = MainControl.Instance.leftb - 1;
                     Destroy(this.gameObject);
                 }
                 btw_life = btw_life - 1;
             }
-            else if (MainControl.Instance.su == "RTW")
+            else if (MainControl.Instance.su == "RTW")//광전사한테 공격받을시
             {
                 btw_life = btw_life - RTW.rtw_atc;
+            }
+            else if (MainControl.Instance.su=="RTK")//기사한테 공격받을시 
+            {
+                btw_life = btw_life - 3;
+            }
+            else if (MainControl.Instance.su=="RTM")//마법사에게 공격받을시
+            {
+                btw_life = btw_life - 3;
+            }
+            else if (MainControl.Instance.su=="RTL")//기마병에게 공격받을시 
+            {
+                btw_life = btw_life - 2;
             }
         }
     }

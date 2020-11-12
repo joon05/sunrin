@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using UnityEditorInternal.VR;
+
 using UnityEngine;
 
 public class SelectTile : MonoBehaviour//선택 타일 코드
 {
+    public AudioSource audioSource;
     private GameObject su;//선택된 게임오브젝트 선언
     public GameObject ia;//공격 판정을 만들어줄 투명한 오브젝트
     float x;
     float y;
-    
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();//사운드
+    }
     void Update()
     {
         su = GameObject.Find(MainControl.Instance.su); //Gameobject su에 선택된 게임오브젝트를 넣는다
@@ -30,6 +33,7 @@ public class SelectTile : MonoBehaviour//선택 타일 코드
     }
     private void OnMouseDown()//클릭되었을때
     {
+        audioSource.Play();
         Destroy(GameObject.Find("ｂａｃｋ　ｂｕｔｔｏｎ(Clone)"));
         if (MainControl.Instance.act == "move")//현재 행동이 move일경우
         {
@@ -71,6 +75,19 @@ public class SelectTile : MonoBehaviour//선택 타일 코드
           
             
         }//요약:유닛에 닿으면 삭제
+        if (MainControl.Instance.act == "attack")//현재 행동이 attack라면
+        {
+            if (other.gameObject.tag == "unit") //닿은게 유닛이라면
+            {
+                Debug.Log("unit");
+            }
+            else 
+            {
+                //Destroy(this.gameObject);
+            }
+
+
+        }
     }
 
 }

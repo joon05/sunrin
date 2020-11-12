@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using UnityEngine.SceneManagement;
 public class MainControl : MonoBehaviour//중앙제어 코드
 {
+    
     //싱글톤 
     public static MainControl Instance;
     public string turn;//현재 턴
@@ -33,6 +34,9 @@ public class MainControl : MonoBehaviour//중앙제어 코드
     
     private void Update()
     {
-        
+        if (leftr==0||leftb==0) 
+        {
+            SceneManager.LoadScene("Finish");
+        }
     }
 }

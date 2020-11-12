@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RTW : MonoBehaviour
+public class RTW : MonoBehaviour//빨강팀 광전사
 {
     public AudioSource audioSource;
     public static int rtw_life = 5;
@@ -12,7 +12,7 @@ public class RTW : MonoBehaviour
     public GameObject mb;//무브 버튼
     void Start()
     {
-       
+
         audioSource = GetComponent<AudioSource>();//사운드
         this.transform.position = new Vector3(-3, (float)1.5, -1);//매 시작 위치
 
@@ -25,8 +25,9 @@ public class RTW : MonoBehaviour
         rtw_atc = 7 - rtw_life;
         if (rtw_life <= 0)
         {
-            Destroy(this.gameObject);
             MainControl.Instance.leftr = MainControl.Instance.leftr - 1;//죽을때 메인 컨트롤에 남은 레드팀 유닛수 줄임
+            Destroy(this.gameObject);
+
         }
     }
     private void OnMouseDown()//클릭되었을때
@@ -55,13 +56,26 @@ public class RTW : MonoBehaviour
                 int d = UnityEngine.Random.Range(1, 5);
                 if (d == 4)
                 {
+                    MainControl.Instance.leftr = MainControl.Instance.leftr - 1;
                     Destroy(this.gameObject);
                 }
                 rtw_life = rtw_life - 1;
             }
-            else if (MainControl.Instance.su == "BTW")
+            else if (MainControl.Instance.su == "BTW")//광전사한테 공격받을시
             {
                 rtw_life = rtw_life - BTW.btw_atc;
+            }
+            else if (MainControl.Instance.su == "BTK")//기사한테 공격받을시 
+            {
+                rtw_life = rtw_life - 3;
+            }
+            else if (MainControl.Instance.su == "BTM")//마법사에게 공격받을시
+            {
+                rtw_life = rtw_life - 3;
+            }
+            else if (MainControl.Instance.su == "BTL")//기마병에게 공격받을시 
+            {
+                rtw_life = rtw_life - 2;
             }
         }
     }
