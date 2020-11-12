@@ -10,7 +10,7 @@ public class Secne3 : MonoBehaviour
     void Start()
     {
         r.SetActive(false);
-        b.SetActive(true);
+        b.SetActive(false);
     }
 
     // Update is called once per frame
@@ -18,11 +18,11 @@ public class Secne3 : MonoBehaviour
     {
         if (MainControl.Instance.leftb == 0) 
         {
-            b.SetActive(true);
+            r.SetActive(true);
         }
         else if (MainControl.Instance.leftr == 0) 
         {
-            r.SetActive(true);
+            b.SetActive(true);
         }
     }
 }
