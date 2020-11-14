@@ -8,4 +8,11 @@ public class Ia : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+    private void Update()
+    {
+        if (MainControl.Instance.destroy==false)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
